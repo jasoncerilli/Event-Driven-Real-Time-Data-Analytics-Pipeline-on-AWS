@@ -75,7 +75,31 @@ S3 — Frontend Dashboard
 
 **Observability:** CloudWatch Logs capture execution logs for all Lambda functions. CloudWatch Metrics monitor Kinesis shard throughput, Lambda invocations, and error rates.
 
----
+## End-to-End Flow
+
+### Manual / Test Path
+
+1. A **test producer** (Lambda or script) generates an event and sends it to **Amazon Kinesis Data Streams**
+2. **Stream Processor Lambda** is triggered by Kinesis (event source mapping)
+3. Lambda processes and enriches the event record
+4. Processed data is written to **Amazon DynamoDB** (analytics store)
+5. Raw event is simultaneously archived to **Amazon S3** (raw storage)
+
+### Automated / Live Data Path
+
+1. **Amazon EventBridge** fires on a schedule (e.g. every 5 mins)
+2. EventBridge triggers **CoinGecko Ingestion Lambda**
+3. Lambda fetches live crypto price data from CoinGecko API
+4. Lambda publishes events into **Kinesis Data Streams** — same pipeline picks up from step 2
+
+### Query & Visualisation Path
+
+1. **Frontend dashboard** (hosted on S3 static website) loads in browser
+2. Dashboard makes API call to **Amazon API Gateway**
+3. API Gateway triggers **Query Lambda** which reads from DynamoDB
+4. Data returns to frontend and renders charts (Chart.js)
+5. **CloudWatch** captures logs and metrics from all Lambda functions throughout
+
 
 ## AWS Services Used
 
@@ -246,7 +270,12 @@ A rigid schema that only supports crypto events would require redesign for any n
 - Pipeline automation with EventBridge
 - Observability with CloudWatch logs and metrics
 
----
+## Key Points
+- This is the most impressive diagram of the 5 — event-driven, streaming, full-stack cloud architecture
+- Event source mapping on Kinesis → Lambda is how Lambda "listens" to a stream — no polling code needed
+- Why both DynamoDB AND S3? DynamoDB for fast querying (millisecond reads), S3 for cheap long-term archival and reprocessing
+- EventBridge is the "scheduler" — think of it as a cloud cron job, no server needed
+- CloudWatch is non-negotiable in production — always show it in the diagram
 
 ## Related
 
