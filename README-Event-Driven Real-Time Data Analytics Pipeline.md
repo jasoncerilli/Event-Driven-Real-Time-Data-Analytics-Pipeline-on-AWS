@@ -234,7 +234,7 @@ Hosted on Amazon S3 with static website hosting enabled. The dashboard fetches d
 > [📸 Screenshot: Live dashboard in browser showing crypto event charts]
 > ![Dashboard](images/dashboard.png)
 > [📸 Screenshot: S3 bucket with static website hosting configuration]
-> ![S3 Static Bucket](images\s3staticbucket.png)
+> ![S3 Static Bucket](images/s3staticbucket.png)
 
 ---
 
