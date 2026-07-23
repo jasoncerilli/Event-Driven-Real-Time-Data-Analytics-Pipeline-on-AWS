@@ -38,7 +38,9 @@ A fully serverless, event-driven real-time analytics platform built on AWS. The 
 
 ---
 
-## Architecture Overview
+## Architecture Diagram
+
+[](eventdriven.png)
 CoinGecko API (Live Crypto Data)
 │
 ▼
