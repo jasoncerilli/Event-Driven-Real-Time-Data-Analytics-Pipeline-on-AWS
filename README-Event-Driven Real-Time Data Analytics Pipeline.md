@@ -163,6 +163,8 @@ The pipeline uses a flexible, generic event model that supports multiple event t
 | Data Record Size | Up to 1 MB per record |
 
 > [📸 Screenshot: Kinesis stream in Active state showing shard metrics]
+ ![Active Stream](images/active.png)
+
 
 ---
 
@@ -175,6 +177,7 @@ Fetches real-time cryptocurrency prices from CoinGecko API for Bitcoin, Ethereum
 **IAM permissions:** `kinesis:PutRecord` on the analytics stream.
 
 > [📸 Screenshot: Lambda function test execution showing successful Kinesis PutRecord]
+> ![Kinesis PutRecord](images/1testfunction.png)
 
 ---
 
@@ -185,7 +188,9 @@ Triggered by Kinesis stream events (event source mapping configured with batch s
 **IAM permissions:** `dynamodb:PutItem` on `AnalyticsEvents`, `s3:PutObject` on the raw events bucket.
 
 > [📸 Screenshot: Lambda event source mapping showing Kinesis trigger configuration]
+> ![Kinesis Trigger](images/addtriggerkin.png)
 > [📸 Screenshot: CloudWatch logs confirming successful processing and DynamoDB write]
+>  ![Logs](images/logs.png)
 
 ---
 
@@ -196,7 +201,7 @@ Queries the DynamoDB `AnalyticsEvents` table using Scan with optional filters. R
 **IAM permissions:** `dynamodb:Scan` on `AnalyticsEvents`.
 
 > [📸 Screenshot: API Gateway test returning JSON analytics records]
-
+![Architecture Diagram](images/verifydata.png)
 ---
 
 ## EventBridge Automation
@@ -225,7 +230,9 @@ Hosted on Amazon S3 with static website hosting enabled. The dashboard fetches d
 - Raw event table with timestamps and metadata
 
 > [📸 Screenshot: Live dashboard in browser showing crypto event charts]
+> ![Dashboard](images/dashboard.png)
 > [📸 Screenshot: S3 bucket with static website hosting configuration]
+> ![S3 Static Bucket](images\s3staticbucket.png)
 
 ---
 
