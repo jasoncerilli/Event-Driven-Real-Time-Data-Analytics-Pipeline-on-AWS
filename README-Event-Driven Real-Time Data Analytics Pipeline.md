@@ -192,6 +192,7 @@ Triggered by Kinesis stream events (event source mapping configured with batch s
 > ![Kinesis Trigger](images/addtriggerkin.png)
 > [📸 Screenshot: CloudWatch logs confirming successful processing and DynamoDB write]
 >  ![Logs](images/logs.png)
+> ![Events](images/lambdaworking.png)
 
 ---
 
