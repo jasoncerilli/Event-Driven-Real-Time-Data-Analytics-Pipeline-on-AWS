@@ -150,6 +150,7 @@ The pipeline uses a flexible, generic event model that supports multiple event t
 | Billing Mode | On-demand |
 
 > [📸 Screenshot: DynamoDB table with processed analytics records]
+> ![Verify Data](images/verifydata)
 
 ---
 
@@ -215,8 +216,8 @@ The pipeline runs continuously without manual triggers using an EventBridge sche
 | Target | `crypto-data-producer` Lambda |
 | State | Enabled |
 
-> [📸 Screenshot: EventBridge rule showing schedule and Lambda target]
-> [📸 Screenshot: Lambda invocation metrics in CloudWatch showing regular automated executions]
+> > [📸 Screenshot: Lambda invocation metrics in CloudWatch showing regular automated executions]
+> ![CloudWatch Logs](images/cloudwatchlogs.png)
 
 ---
 
